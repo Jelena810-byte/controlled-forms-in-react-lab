@@ -83,23 +83,33 @@ const Bookshelf = () => {
         </form>
       </div>
 
-      {/* --- Books Display --- */}
       <div className="bookCardsDiv">
-        <h3>BOOKSHELF</h3>
-        {books.map((book, index) => (
-          <div key={index} className="bookCard">
-            <h4>{book.title}</h4>
-            <p>by {book.author}</p>
-          </div>
- )
-        )}
+  {books.length === 0 ? (
+    <p>No books added yet!</p>
+  ) : (
+    books.map((book, index) => (
+      <div className="bookCardRow" key={index}>
+        <div className="bookCard">
+          <h4 className="bookTitle">{book.title}</h4>
+          <p className="bookAuthor">by {book.author}</p>
+        </div>
+
+        {/* Remove button OUTSIDE the box */}
+        <button
+          className="removeBtn"
+          onClick={() => handleRemove(index)}
+          aria-label={`Remove ${book.title}`}
+          type="button"
+        >
+          ❌ Remove
+        </button>
       </div>
+    ))
+  )}
+</div>
+
     </div>
   );
 };
-
-
-              
-
 
 export default Bookshelf;
